@@ -1,33 +1,39 @@
 package larionov.homeWork.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-@Table(name = "pizze")
-public class Pizza {
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String nome;
+@DiscriminatorValue("pizza")
+public class Pizza extends MenuItem {
     private String base;
-    private Double prezzo;
-    private Integer calorie;
+
+    @ManyToMany
+    @JoinTable(
+            name = "menu_item_pizza", // Nome della tabella nel database
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_item_id")
+    )
+    private List<MenuItem> menuItems;
 
     public Pizza(String nome, double prezzo, int calorie) {
-        this.calorie = calorie;
-        this.nome = nome;
+        super(nome, prezzo, calorie);
         this.base = "Mozzarella e Pommidoro";
-        this.prezzo = prezzo;
+    }
+
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "menuItems=" + getNome() +
+                '}';
     }
 }

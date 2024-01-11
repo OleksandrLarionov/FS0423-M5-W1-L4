@@ -61,5 +61,5 @@ public class PizzaService {
         return pizzaDAO.findByCalorie(calorie);
     }
 
-
+public List<Pizza> filterByPrezzo(double prezzo) {return pizzaDAO.findByPrezzo(prezzo);}
 }
