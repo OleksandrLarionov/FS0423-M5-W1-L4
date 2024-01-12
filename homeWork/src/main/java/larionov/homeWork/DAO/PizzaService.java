@@ -1,5 +1,6 @@
 package larionov.homeWork.DAO;
 
+import larionov.homeWork.entities.MenuItem;
 import larionov.homeWork.entities.Pizza;
 
 import larionov.homeWork.exceptions.ItemNotFoundException;

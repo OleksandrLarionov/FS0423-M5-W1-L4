@@ -24,6 +24,11 @@ public abstract class MenuItem {
     @ManyToMany(mappedBy = "menuItems")
     private List<Pizza> pizzaList;
 
+    @ManyToMany(mappedBy = "menuItems")
+    private List<Bevande> bevandeList;
+    @ManyToMany(mappedBy = "menuItems")
+    private List<Condimenti>condimentiList;
+
     public MenuItem(String nome, double prezzo, int calorie) {
         this.nome = nome;
         this.prezzo = prezzo;
